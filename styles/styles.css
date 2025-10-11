@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+/* ==== TOC ================================================================
+   [0] Settings  | [1] Base  | [2] Type  | [3] Layout  | [4] Components | [5] Utils
+   ======================================================================= */
+/* [0] Settings ----------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* [1] Base --------------------------------------------------------------- */
+:root {
+  --text-purple: hsla(259, 72%, 47%, 1);
+  --section-purple: hsla(241, 78%, 60%, 1);
+  --button: hsla(337, 83%, 60%, 1);
+  --footer-black: hsla(0, 0%, 5%, 1);
+  --ghost-text-purple: hsla(248, 100%, 97%, 1);
+  --project-background: hsl(210, 2%, 98%, 1);
+  --tile-text: hsla(0, 0%, 48%, 1);
+}
+
+body {
+  background-color: var(--section-purple);
+}
+
+/* [2] Type --------------------------------------------------------------- */
+html {
+  font-size: 16px;
+  /* mobile text format voor responsiveness */
+}
+
+:root {
+  --ff-body: "Roboto", sans-serif;
+  --ff-heading: "Merriweather", serif;
+}
+
+body {
+  font-family: var(--ff-body), sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ff-heading), serif;
+}
+
+h1 {
+  font-size: 3.2rem;
+  font-weight: 600;
+}
+
+input, button, select, textarea, a {
+  font-family: var(--ff-body), sans-serif;
+}
+
+button {
+  background-color: var(--button);
+}
+
+a {
+  text-decoration: none;
+}
+
+header a {
+  color: var(--ghost-text-purple);
+}
+
+nav {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* [3] Layout ------------------------------------------------------------- */
+/* [4] Components --------------------------------------------------------- */
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 3.5rem;
+  padding: 3rem 3rem;
+}
+
+.float-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--ghost-text-purple);
+  font-size: 1.6rem;
+  font-weight: 300;
+  padding: 2rem;
+  gap: 1.5rem;
+}
+
+.float-text-wrapper h1 {
+  color: var(--ghost-text-purple);
+}
+
+/* [5] Utils -------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1199px) {
+  html {
+    font-size: 18px;
+  }
+  /* tablets */
+}
+@media screen and (min-width: 1200px) {
+  /* voor desktops en groter */
+  html {
+    font-size: 20px;
+  }
+}
