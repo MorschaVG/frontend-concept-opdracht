@@ -2,6 +2,7 @@
 /* ==== TOC ================================================================
    [0] Settings  | [1] Base  | [2] Type  | [3] Layout  | [4] Components | [5] Utils
    ======================================================================= */
+/* region Settings */
 /* [0] Settings ----------------------------------------------------------- */
 * {
   margin: 0;
@@ -9,6 +10,8 @@
   box-sizing: border-box;
 }
 
+/* endregion */
+/*region Base*/
 /* [1] Base --------------------------------------------------------------- */
 :root {
   --text-purple: hsla(259, 72%, 47%, 1);
@@ -16,18 +19,9 @@
   --button: hsla(337, 83%, 60%, 1);
   --footer-black: hsla(0, 0%, 5%, 1);
   --ghost-text-purple: hsla(248, 100%, 97%, 1);
-  --project-background: hsl(210, 2%, 98%, 1);
-  --tile-text: hsla(0, 0%, 48%, 1);
-}
-
-body {
-  background-color: var(--section-purple);
-}
-
-/* [2] Type --------------------------------------------------------------- */
-html {
-  font-size: 16px;
-  /* mobile text format voor responsiveness */
+  --tile-text: hsl(210, 16%, 93%, 1);
+  --card-background: hsla(150, 33%, 96%, 1);
+  --service-text: rgb(139, 139, 139);
 }
 
 :root {
@@ -35,9 +29,17 @@ html {
   --ff-heading: "Merriweather", serif;
 }
 
+/*endregion*/
+/*region Type*/
+/* [2] Type --------------------------------------------------------------- */
+html {
+  font-size: 16px;
+  /* mobile text format voor responsiveness */
+}
+
 body {
   font-family: var(--ff-body), sans-serif;
-  line-height: 1.5;
+  line-height: 1.2;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,7 +56,17 @@ input, button, select, textarea, a {
 }
 
 button {
+  border: none;
   background-color: var(--button);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ghost-text-purple);
+  padding: 1.3rem 2.5rem;
+  margin-top: 1rem;
+  border-radius: 999rem; /*geleerd van chatgpt lol*/
+  box-shadow: -17px 10px 30px -10px rgba(0, 0, 0, 0.24), 17px 10px 30px -10px rgba(0, 0, 0, 0.24);
 }
 
 a {
@@ -70,12 +82,18 @@ nav {
   font-weight: 300;
 }
 
+/*endregion*/
+/*region Layout*/
 /* [3] Layout ------------------------------------------------------------- */
+/*endregion*/
+/*region Components*/
 /* [4] Components --------------------------------------------------------- */
 header {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: #4C49E9;
+  background: linear-gradient(90deg, rgb(76, 73, 233) 66%, rgb(88, 34, 206) 100%);
 }
 
 nav {
@@ -95,14 +113,224 @@ nav {
   color: var(--ghost-text-purple);
   font-size: 1.6rem;
   font-weight: 300;
-  padding: 2rem;
-  gap: 1.5rem;
+  padding: 4rem;
+  padding-bottom: 13rem;
+  gap: 1.1rem;
+  position: relative;
+  overflow: visible;
+  z-index: 0;
+  min-height: 400px;
 }
 
 .float-text-wrapper h1 {
   color: var(--ghost-text-purple);
 }
 
+.witte-fliebel {
+  position: absolute;
+  left: 50%;
+  bottom: -1rem;
+  transform: translateX(-50%);
+}
+
+#white-bg {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 6rem;
+}
+
+.purple-text {
+  color: var(--text-purple);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: var(--ff-heading), sans-serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  width: 60%;
+  gap: 2rem;
+  flex-grow: 1;
+}
+
+#question-link {
+  color: var(--footer-black);
+  font-family: var(--ff-body), sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: auto;
+  padding-top: 8rem;
+}
+
+#question-link a {
+  color: var(--text-purple);
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  box-shadow: inset 0 24px 40px -2px rgba(0, 0, 0, 0.15);
+}
+
+.article-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-around;
+  width: 100%;
+  background-color: var(--tile-text);
+  padding: 6rem 4rem 3rem 3rem;
+  gap: 2rem;
+}
+
+.article-card h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.article-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5rem 5rem 5rem 5rem;
+  font-size: 1.3rem;
+  min-width: 0;
+  flex-basis: 700px;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+
+.article-text a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.article-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.article-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  flex-basis: 800px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  box-shadow: -17px 10px 30px -10px rgba(0, 0, 0, 0.24), 17px 10px 30px -10px rgba(0, 0, 0, 0.24);
+}
+
+.article-card:nth-of-type(2) {
+  flex-direction: row-reverse;
+}
+
+.services-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.services-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 6rem 8rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.services-card {
+  background-color: white;
+  display: flex;
+  color: var(--service-text);
+  flex-direction: column;
+  border: 1.5px solid var(--text-purple);
+  font-weight: 300;
+  padding: 2rem;
+  flex-basis: 465px;
+  gap: 1rem;
+  box-shadow: -3px 10px 30px -20px rgba(0, 0, 0, 0.24), -2px 10px 30px -20px rgba(0, 0, 0, 0.24);
+}
+
+.services-card img {
+  display: block;
+  width: 5rem;
+}
+
+.services-card h2 {
+  color: var(--text-purple);
+  font-weight: 500;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #4C49E9;
+  background: linear-gradient(90deg, rgb(76, 73, 233) 66%, rgb(88, 34, 206) 100%);
+  padding: 3rem 4rem 3rem 3rem;
+}
+
+.form-container p {
+  font-size: 1.2rem;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  flex-basis: 300px;
+  margin-bottom: 0.5rem;
+}
+
+.field {
+  width: clamp(16rem, 50vw, 30rem);
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  padding: clamp(0.6rem, 1vw, 0.9rem) 1rem;
+}
+
+.form-container button {
+  width: 15%;
+  margin-top: 0.5rem;
+}
+
+::placeholder {
+  color: var(--service-text);
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  padding: 1.3rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+/*endregion*/
+/*region Utils*/
 /* [5] Utils -------------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1199px) {
   html {
@@ -116,3 +344,4 @@ nav {
     font-size: 20px;
   }
 }
+/*endregion*/
