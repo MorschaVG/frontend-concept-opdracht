@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:https="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:https="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,15 +9,17 @@
 <body>
 <header>
     <nav>
-        <a href="https://example.com" target="_blank">Case Studies</a>
-        <a href="https://example.com" target="_blank">Services</a>
-        <a href="https://example.com" target="_blank">Contact Us</a>
+        <a href="#case-studies" target="_self">Case Studies</a>
+        <a href="#services" target="_self">Services</a>
+        <a href="#contact" target="_self">Contact Us</a>
     </nav>
     <div class="float-text-wrapper">
         <h1>Your website is an investment in the <br>success of your business.</h1>
         <p>We are here to help you succeed.</p>
         <button type="button">Let's work together</button>
+        <div class="arrow-right"></div>
         <img class="witte-fliebel" src="assets/squiggle_line_stripe.svg" alt="decorative-line">
+
     </div>
     <section class="float-text-wrapper" id="white-bg">
         <div class="purple-text">
@@ -25,15 +27,15 @@
             <span>We use strategic UX, SEO optimization and beautiful visual designs to help your business grow.</span>
             <span>We see every project as a fresh opportunity, pushing ourselves to create new digital experiences.</span>
         </div>
-        <span id="question-link">Have a question? <a>Click here</a> to contact us!</span>
+        <span id="question-link">Have a question? <a href="http://example.com">Click here</a> to contact us!</span>
     </section>
 </header>
 <main>
     <section class="projects-container">
         <article class="article-card">
             <div class="article-text">
-                <div><h2>Rolling Stone</h2></div>
-                <div><img src="assets/squiggle_line.svg" alt="squiggle-line"></div>
+                <div id="case-studies"><h2>Rolling Stone</h2></div>
+
 
                 <p>You know Rolling Stone. It’s the definitive voice in music, politics and culture. It’s a global
                     icon.</p>
@@ -46,7 +48,7 @@
         <article class="article-card">
             <div class="article-text">
                 <div><h2>Variety</h2></div>
-                <div><img src="assets/squiggle_line.svg" alt="squiggle-line"></div>
+
 
                 <p>Variety is an industry leader for breaking entertainment news, reviews and box office results with
                     archive of content dating back to 1905.</p>
@@ -59,17 +61,16 @@
         <article class="article-card">
             <div class="article-text">
                 <div><h2>Worth</h2></div>
-                <div><img src="assets/squiggle_line.svg" alt="squiggle-line"></div>
+
 
                 <p>A global media platform connecting a community that embraces worth beyond wealth.</p>
                 <a href="https://example.com" target="_blank">View project</a>
             </div>
-            </div>
-            <div class="article-image"><img src="assets/work-image-03.jpeg" alt="ipad-showing-variety-magazine">
-            </div>
+            <div class="article-image"><img src="assets/work-image-03.jpeg" alt="ipad-showing-variety-magazine"></div>
+            <div class="arrow-right-grey"></div>
         </article>
     </section>
-    <section class="services-container">
+    <section class="services-container" id="services">
         <div class="services-card-wrapper">
             <article class="services-card">
                 <img src="assets/icon_web-design.svg" alt="web-design-icon">
@@ -124,17 +125,26 @@
             </article>
         </div>
     </section>
-    <section class="form-container">
+    <section class="form-container" id="contact">
+        <div class="arrow-right-bottom"></div>
         <div class="float-text-wrapper">
             <h1>Let's work together</h1>
             <p>Have a question? Need a quote? Let us know!</p>
             <form>
-                Name
-                <input type="text" placeholder="Name">
-                Email
-                <input type="email" placeholder="Email">
-                Message
-                <input type="text" class="field" placeholder="Message">
+
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" id="Name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="email" id="Email" placeholder="Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="Message">Message</label>
+                    <textarea id="Message" placeholder="Message"></textarea>
+                </div>
             </form>
             <button type="submit">Send</button>
         </div>

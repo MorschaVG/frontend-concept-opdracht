@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 /* ==== TOC ================================================================
    [0] Settings  | [1] Base  | [2] Type  | [3] Layout  | [4] Components | [5] Utils
@@ -86,14 +87,63 @@ nav {
 /*region Layout*/
 /* [3] Layout ------------------------------------------------------------- */
 /*endregion*/
-/*region Components*/
-/* [4] Components --------------------------------------------------------- */
+/*region Areas*/
+/* [4] Areas --------------------------------------------------------- */
 header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #4C49E9;
   background: linear-gradient(90deg, rgb(76, 73, 233) 66%, rgb(88, 34, 206) 100%);
+  position: relative;
+  isolation: isolate;
+}
+
+header > * {
+  z-index: 1;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* dekt de hele header */
+  background-image: url("../assets/noise-texture.png");
+  background-repeat: repeat; /* laat ‘m tegelen */
+  opacity: 0.2; /* intensiteit van de grain */
+  pointer-events: none;
+  z-index: 0; /* onder de content houden */
+}
+
+.float-text-wrapper:not(#white-bg) {
+  position: relative;
+  isolation: isolate; /* eigen stacking context */
+}
+
+.float-text-wrapper:not(#white-bg)::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* dekt alleen dit blok */
+  background-image: url("../assets/noise-texture.png");
+  background-repeat: repeat;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.float-text-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+.arrow-right {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 48px solid transparent;
+  border-right: 0 solid white;
+  border-bottom: 0 solid transparent;
+  border-left: 100vw solid white;
+  top: 31rem;
+  z-index: 1;
 }
 
 nav {
@@ -142,6 +192,19 @@ nav {
   padding-bottom: 6rem;
 }
 
+#white-bg::before {
+  content: "hello";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -72%);
+  font-size: 24rem;
+  font-weight: 700;
+  color: hsla(259, 72%, 47%, 0.05);
+  z-index: -1;
+  pointer-events: none;
+}
+
 .purple-text {
   color: var(--text-purple);
   display: flex;
@@ -179,6 +242,32 @@ nav {
   align-items: center;
   width: auto;
   box-shadow: inset 0 24px 40px -2px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.article-card:nth-of-type(1)::before {
+  content: "work";
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translate(-54%, -72%);
+  font-size: 31rem;
+  font-weight: 600;
+  color: white;
+  z-index: 0;
+  pointer-events: none;
+  letter-spacing: -1rem;
+}
+
+.article-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.article-card:nth-of-type(1) {
+  padding: 15rem 4rem 3rem 3rem;
 }
 
 .article-card {
@@ -188,13 +277,29 @@ nav {
   justify-content: space-around;
   width: 100%;
   background-color: var(--tile-text);
-  padding: 6rem 4rem 3rem 3rem;
+  padding: 4rem 4rem 3rem 3rem;
   gap: 2rem;
+}
+
+.article-card:last-of-type {
+  padding: 4rem 4rem 8rem 3rem;
 }
 
 .article-card h2 {
   font-size: 2rem;
   font-weight: 600;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+.article-card h2::after {
+  content: "";
+  display: block; /* komt onder de tekst te staan */
+  width: clamp(4rem, 40%, 4rem); /* breedte van de lijn */
+  height: 14px; /* hoogte van de PNG/SVG */
+  margin: 1rem 1rem 1rem 0; /* auto => centreren onder de tekst */
+  background: url("../assets/squiggle_line.svg") no-repeat center/contain;
 }
 
 .article-text {
@@ -210,11 +315,28 @@ nav {
 }
 
 .article-text a {
+  position: relative;
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
+}
+
+.article-text a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: var(--text-purple);
+  transition: width 0.2s ease-in;
+}
+
+.article-text a:hover::after {
+  width: 2rem;
 }
 
 .article-image img {
@@ -237,6 +359,18 @@ nav {
   flex-direction: row-reverse;
 }
 
+.arrow-right-grey {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 52px solid transparent;
+  border-right: 0 solid transparent;
+  border-bottom: 0 solid transparent;
+  border-left: 100vw solid white;
+  top: 137rem;
+  z-index: 1;
+}
+
 .services-container {
   display: flex;
   flex-direction: row;
@@ -248,9 +382,28 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 6rem 8rem;
+  padding: 12rem 8rem;
   gap: 2rem;
   flex-wrap: wrap;
+  isolation: isolate;
+  z-index: 1;
+}
+
+.services-card-wrapper > * {
+  z-index: 1;
+}
+
+.services-card-wrapper::before {
+  content: "services";
+  position: absolute;
+  top: 229rem;
+  left: 50%;
+  transform: translate(-50%, -72%);
+  font-size: 17rem;
+  font-weight: 700;
+  color: hsla(259, 72%, 47%, 0.05);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .services-card {
@@ -283,6 +436,25 @@ nav {
   background: #4C49E9;
   background: linear-gradient(90deg, rgb(76, 73, 233) 66%, rgb(88, 34, 206) 100%);
   padding: 3rem 4rem 3rem 3rem;
+  isolation: isolate;
+  position: relative;
+}
+
+.form-container:not(.arrow-right-bottom)::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* dekt de hele header */
+  background-image: url("../assets/noise-texture.png");
+  background-repeat: repeat; /* laat ‘m tegelen */
+  background-size: 300px 300px;
+  opacity: 0.2; /* intensiteit van de grain */
+  pointer-events: none;
+  z-index: 0; /* onder de content houden */
+}
+
+.form-container > * {
+  position: relative;
+  z-index: 1;
 }
 
 .form-container p {
@@ -292,7 +464,7 @@ nav {
 .form-container form {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: start;
   justify-content: center;
   border-radius: 50%;
   font-size: 1rem;
@@ -300,12 +472,14 @@ nav {
   text-align: left;
   flex-basis: 300px;
   margin-bottom: 0.5rem;
+  gap: 2rem;
 }
 
-.field {
-  width: clamp(16rem, 50vw, 30rem);
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
-  padding: clamp(0.6rem, 1vw, 0.9rem) 1rem;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
 }
 
 .form-container button {
@@ -313,8 +487,24 @@ nav {
   margin-top: 0.5rem;
 }
 
+input {
+  padding: 2rem 1rem;
+  border-radius: 0.2rem;
+  border: 1px var(--service-text) solid;
+  width: 50rem;
+  height: 3rem;
+  text-align: left;
+}
+
 ::placeholder {
+  font-size: 1rem;
   color: var(--service-text);
+}
+
+textarea {
+  resize: vertical;
+  height: 10rem;
+  padding: 1rem;
 }
 
 .footer {
@@ -329,9 +519,21 @@ nav {
   font-weight: 300;
 }
 
+.arrow-right-bottom {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 0 solid transparent;
+  border-right: 143vw solid white;
+  border-bottom: 70px solid transparent;
+  border-left: 0 solid transparent;
+  top: -1rem;
+  right: -1rem;
+}
+
 /*endregion*/
-/*region Utils*/
-/* [5] Utils -------------------------------------------------------------- */
+/*region Media Queries*/
+/* [5] Media Queries -------------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1199px) {
   html {
     font-size: 18px;
