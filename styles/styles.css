@@ -30,6 +30,11 @@
   --ff-heading: "Merriweather", serif;
 }
 
+:root {
+  --trim-h: 60px;
+  --trim-h2: 24px;
+}
+
 /*endregion*/
 /*region Type*/
 /* [2] Type --------------------------------------------------------------- */
@@ -96,19 +101,20 @@ header {
   background: linear-gradient(90deg, rgb(76, 73, 233) 66%, rgb(88, 34, 206) 100%);
   position: relative;
   isolation: isolate;
+  overflow: visible;
 }
 
 header > * {
   z-index: 1;
 }
 
-header::after {
+header::before {
   content: "";
   position: absolute;
   inset: 0; /* dekt de hele header */
   background-image: url("../assets/noise-texture.png");
   background-repeat: repeat; /* laat ‘m tegelen */
-  opacity: 0.2; /* intensiteit van de grain */
+  opacity: 0.3; /* intensiteit van de grain */
   pointer-events: none;
   z-index: 0; /* onder de content houden */
 }
@@ -119,6 +125,18 @@ header::after {
 }
 
 .float-text-wrapper:not(#white-bg)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--trim-h);
+  background: #fff;
+  clip-path: polygon(-89% 149%, 106% -1%, 136% 93%);
+  z-index: 1;
+}
+
+.float-text-wrapper:not(#white-bg)::before {
   content: "";
   position: absolute;
   inset: 0; /* dekt alleen dit blok */
@@ -134,24 +152,12 @@ header::after {
   z-index: 1;
 }
 
-.arrow-right {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-top: 48px solid transparent;
-  border-right: 0 solid white;
-  border-bottom: 0 solid transparent;
-  border-left: 100vw solid white;
-  top: 31rem;
-  z-index: 1;
-}
-
 nav {
   display: flex;
   flex-direction: row;
   justify-content: right;
   gap: 3.5rem;
-  padding: 3rem 3rem;
+  padding: 3rem 2rem;
 }
 
 .float-text-wrapper {
@@ -235,6 +241,29 @@ nav {
   margin-top: auto;
 }
 
+.arrow-right-projects {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 0 solid transparent;
+  border-right: 143vw solid white;
+  border-bottom: 69px solid transparent;
+  border-left: 0 solid transparent;
+  top: -1rem;
+  right: -1rem;
+  z-index: 1;
+}
+
+.projects-container::before {
+  content: "";
+  position: absolute;
+  inset: 0px -74px 54px -10px;
+  height: var(--trim-h);
+  background: #ffffff;
+  clip-path: polygon(-109% 177%, 98% 0%, 73% -159%);
+  z-index: 1;
+}
+
 .projects-container {
   display: flex;
   flex-direction: column;
@@ -250,15 +279,15 @@ nav {
 .article-card:nth-of-type(1)::before {
   content: "work";
   position: absolute;
-  top: 18%;
+  top: 46%;
   left: 50%;
   transform: translate(-54%, -72%);
-  font-size: 31rem;
-  font-weight: 600;
-  color: white;
+  font-size: 29rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.5607843137);
   z-index: 0;
   pointer-events: none;
-  letter-spacing: -1rem;
+  letter-spacing: -0.9rem;
 }
 
 .article-card > * {
@@ -279,6 +308,7 @@ nav {
   background-color: var(--tile-text);
   padding: 4rem 4rem 3rem 3rem;
   gap: 2rem;
+  position: relative;
 }
 
 .article-card:last-of-type {
@@ -361,13 +391,12 @@ nav {
 
 .arrow-right-grey {
   position: absolute;
+  left: 0;
+  top: 0; /* anker aan bovenkant van de sectie waar hij in zit */
   width: 0;
   height: 0;
+  border-left: 100vw solid #fff;
   border-top: 52px solid transparent;
-  border-right: 0 solid transparent;
-  border-bottom: 0 solid transparent;
-  border-left: 100vw solid white;
-  top: 137rem;
   z-index: 1;
 }
 
@@ -521,14 +550,13 @@ textarea {
 
 .arrow-right-bottom {
   position: absolute;
+  right: -1rem;
+  bottom: 757px;
   width: 0;
   height: 0;
-  border-top: 0 solid transparent;
-  border-right: 143vw solid white;
-  border-bottom: 70px solid transparent;
-  border-left: 0 solid transparent;
-  top: -1rem;
-  right: -1rem;
+  border-right: 203vw solid #fff;
+  border-bottom: 48px solid transparent;
+  z-index: 2;
 }
 
 /*endregion*/
@@ -544,6 +572,107 @@ textarea {
   /* voor desktops en groter */
   html {
     font-size: 20px;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .form-container p {
+    font-size: 1.1rem;
+  }
+  header {
+    padding: 1rem 0 0 0; /* compacte side padding */
+  }
+  .form-container {
+    padding: 6rem 0 0 0;
+  }
+  .form-container > .float-text-wrapper {
+    padding: 0 0 2rem 0;
+  }
+  form {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+  form::placeholder {
+    text-align: left;
+    line-height: 2rem;
+  }
+  #white-bg {
+    padding: 1rem 0 1rem 0;
+  }
+  .projects-container {
+    padding: 1rem 0 1rem 0;
+    box-shadow: none;
+    margin-top: 4rem;
+  }
+  .article-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 1rem; /* minder padding */
+  }
+  .article-text,
+  .article-image {
+    flex: 0 0 auto; /* geen vaste basis */
+    min-width: 0; /* laat shrinken */
+    padding: 0; /* haal extra padding weg hier */
+  }
+  .article-image img {
+    display: block;
+    width: 100%;
+    height: auto; /* geen uitrekken */
+    object-fit: cover; /* desnoods croppen */
+  }
+  /* jouw stapel */
+  .article-card:nth-of-type(2) {
+    flex-direction: column;
+  }
+  .article-card:nth-of-type(1),
+  .article-card:last-of-type {
+    padding: 1.5rem 1rem;
+  }
+  .article-card:nth-of-type(1) {
+    padding-top: 6rem;
+  }
+  .services-container {
+    padding: 4rem 0 3rem 0;
+  }
+  .services-card-wrapper {
+    padding: 1rem 3rem 4rem 3rem;
+  }
+  .services-card {
+    width: 100%;
+  }
+  nav {
+    justify-content: space-around;
+    font-weight: 600;
+    margin-top: 0.3rem;
+    padding-top: 1rem;
+  }
+  input, textarea {
+    width: 100%;
+    max-width: 100%;
+    font-size: 3.2rem;
+  }
+  .form-container button {
+    width: 54%;
+    padding: 1.9rem 0;
+    font-size: 0.95rem;
+  }
+  .services-card-wrapper::before {
+    content: none !important;
+  }
+  .float-text-wrapper:not(#white-bg)::after {
+    height: var(--trim-h2);
+  }
+  .projects-container::before {
+    height: var(--trim-h2);
+    inset: 13px -74px 54px -10px;
+  }
+  #question-link {
+    padding-top: 3rem;
   }
 }
 /*endregion*/
